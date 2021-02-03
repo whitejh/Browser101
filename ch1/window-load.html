@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="test.js" defer></script>
+  </head>
+  <body>
+    <script>
+      // only document
+      window.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded');
+      }); // DOMContentLoaded는 html만 완료되면 호출된다
+
+      // after resources (css, images)
+      window.addEventListener('load', () => {
+        console.log('load');
+      }); // laod는 리소스(페이지 안에서 쓰여지고 있는 폰트, 이미지)들이 다운로드가 완료되면 그 때 호출됨
+
+      // before unload
+      window.addEventListener('beforeunload', () => {
+        console.log('beforeunload');
+      }); // 사용자가 페이지를 나갈 때 나가기 전에 불려지는 함수
+
+      // resource is being unloaded
+      window.addEventListener('unload', () => {
+        console.log('unload');
+      }); // 페이지가 unload 되었을 때 불려지는 함수
+    </script>
+  </body>
+</html>
+
+<!-- 브라우저가 html 파일을 열게 되면 처음부터 html페이지를 읽어서
+dom 요소로 변환한 다음에 script부분을 만나면 window에 
+이벤트 리스너를 등록하게 되고 window에서 페이지에 필요한 
+모든 리소스가 다 로딩이 완료되면 콜백함수가 출력된다 -->
+
+<!-- 
+  자바스크립트 파일이 어떤 리소스에 대해서 뭔가를 수행하지 않는 이상
+  DOMContentLoaded 안에서 동작을 수행하는 것이 조금 더 빠르게 사용자가 볼 수 있는 장점
+  defer 옵션을 사용하면  DOMContentLoaded 이전에 서로서로 비슷하게 발생되기 때문에 효율적으로 사용됨
+-->
+
+<!-- 페이지 안에 리소스가 많을 경우 DOMContentLoaded가 빨리 호출이 되고
+load는 조금 나중에 리소스가 준비가 완료되면 불려진다 -->

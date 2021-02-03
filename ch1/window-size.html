@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .tag {
+        display: inline-block;
+        background-color: thistle;
+        padding: 16px;
+        margin-top: 16px;
+        font-size: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tag">Window Size</div>
+    <script>
+      const tag = document.querySelector('.tag');
+      function updateTag() {
+        tag.innerHTML = `
+        window.screen: ${window.screen.width}, ${window.screen.height} <br>
+        window.outer: ${window.outerWidth}, ${window.outerHeight} <br>
+        window.inner: ${window.innerWidth}, ${window.innerHeight} <br>
+        documentElement.clientWidth: ${document.documentElement.clientWidth}, ${document.documentElement.clientHeight}
+        `;
+      }
+
+      window.addEventListener('resize', () => {
+        updateTag(); // 2. 브라우저 페이지 사이즈가 변경될 때만 호출되어서 실행됨
+      });
+      updateTag(); // 1. 페이지가 로딩되면 이게 젤 먼저 실행된다
+    </script>
+  </body>
+</html>
+
+<!-- addEventListener 이벤트를 등록하는 가장 권장되는 방식 -->
+<!-- script가 실행되면 tag라는 변수에 querySelector를 이용해서 찾은 DOM요소가 할당되고
+이 tag는 div 요소를 가리키게 되고 updateTag() 함수를 선언해서 tag의 innerHTML을 코드 내용으로 바꿔준다
+window에는 addEventListener를 등록해서 window 창이 새로 사이즈가 변경될 떄마다 
+콜백함수가 호출되고 콜백함수 안에서는 updateTag()라는 함수를 호출한다
+updateTag() 함수는 tag의 innerHTML을 코드내용으로 계속 교체해주는 작업을 한다-->

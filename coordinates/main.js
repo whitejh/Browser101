@@ -9,10 +9,13 @@ document.addEventListener('mousemove', () => {
   console.log(`${x} ${y}`);
 
   vertical.style.left = `${x}px`;
+
   horizontal.style.top = `${y}px`;
+
   target.style.left = `${x}px`;
   target.style.top = `${y}px`;
+
   tag.style.left = `${x}px`;
   tag.style.top = `${y}px`;
-  tag.innerHTML = `${x}px, ${y}px`;
+  tag.innerHTML = `${x}px, ${y}px`; // 초기 Hello에 left, top값을 전달
 });
